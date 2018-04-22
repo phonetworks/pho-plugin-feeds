@@ -1,0 +1,29 @@
+{
+    "name": "phonetworks/pho-plugins-feeds",
+    "homepage": "https://phonetworks.org",
+  "license": "MIT",
+  "authors": [
+        {
+            "name": "Emre Sokullu",
+            "email": "emre@phonetworks.org",
+            "homepage": "http://www.emresokullu.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "get-stream/stream": "^2.6",
+        "psr/log": "^1.0"
+    },
+    "require-dev": {
+        "phonetworks/pho-kernel": "dev-master",
+        "pho-recipes/web": "dev-master",
+        "psy/psysh": "@stable",
+        "vlucas/phpdotenv": "^2.4"
+    },
+    "autoload": {
+        "psr-4": {
+              "Pho\\Plugins\\": "src/Pho/Plugins/"
+        }
+   }
+}
