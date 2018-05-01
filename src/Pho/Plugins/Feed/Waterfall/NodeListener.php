@@ -47,6 +47,16 @@ class NodeListener
                     $feed->addActivity($data);
                 }
             });
+            $node->on("joined", function($group) use ($id, $plugin) {
+                $feed = $plugin->client()->feed("wall",  $id);
+                $data = [
+                    "actor"=>$id, // actor id
+                    "verb"=>"join", // edge
+                    "object"=>(string) $group->id(), // object id
+                    "txt"=>EdgeFeedGenerator::process($edge), // custom field
+                ];
+                $feed->addActivity($data);
+            });
             return;
         }
         elseif($node instanceof Object) {  
