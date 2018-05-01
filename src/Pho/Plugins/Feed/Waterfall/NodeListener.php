@@ -10,6 +10,7 @@ use Pho\Framework\Object;
 use Psr\Log\LoggerInterface;
 use Pho\Plugins\Feed\Generators\NodeFeedGenerator;
 use Pho\Plugins\Feed\Generators\EdgeFeedGenerator;
+use Pho\Plugins\Feed\Generators\JoinFeedGenerator;
 use Pho\Plugins\FeedPlugin;
 use Pho\Framework\ActorOut\Read;
 use Pho\Framework\ActorOut\Subscribe;
@@ -53,7 +54,7 @@ class NodeListener
                     "actor"=>$id, // actor id
                     "verb"=>"join", // edge
                     "object"=>(string) $group->id(), // object id
-                    "txt"=>EdgeFeedGenerator::process($edge), // custom field
+                    "txt"=>JoinFeedGenerator::process($group), // custom field
                 ];
                 $feed->addActivity($data);
             });
