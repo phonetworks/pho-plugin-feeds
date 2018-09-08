@@ -15,7 +15,7 @@ use Pho\Plugins\Feed\Waterfall\Exceptions\UnknownEntityException;
 use Pho\Lib\Graph\NodeInterface;
 use Pho\Framework\Actor;
 use Pho\Framework\Graph;
-use Pho\Framework\Object;
+use Pho\Framework\Obj;
 use Psr\Log\LoggerInterface;
 use Pho\Plugins\Feed\Generators\NodeFeedGenerator;
 use Pho\Plugins\Feed\Generators\EdgeFeedGenerator;
@@ -69,7 +69,7 @@ class NodeListener
             });
             return;
         }
-        elseif($node instanceof Object) {  
+        elseif($node instanceof Obj) {  
             $plugin->logger()->info(sprintf("%s is an Object", (string) $node->id()));
             // skip
             return;

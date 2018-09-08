@@ -16,7 +16,7 @@ use Pho\Lib\Graph\EdgeInterface;
 use Pho\Framework\ActorOut\Read;
 use Pho\Framework\ActorOut\Subscribe;
 use Pho\Framework\ActorOut\Write;
-use Pho\Framework\ObjectOut\Mention;
+use Pho\Framework\ObjOut\Mention;
 use Psr\Log\LoggerInterface;
 use Pho\Plugins\FeedPlugin;
 
