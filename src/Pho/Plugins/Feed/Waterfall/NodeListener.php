@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Pho package.
+ *
+ * (c) Emre Sokullu <emre@phonetworks.org>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Pho\Plugins\Feed\Waterfall;
 
 use Pho\Plugins\Feed\Waterfall\Exceptions\UnknownEntityException;
@@ -26,7 +35,7 @@ class NodeListener
             $plugin->logger()->info(sprintf("%s is an Actor", $id));
             $node->on("edge.created", function($edge) use ($id, $plugin) {
                 if($edge instanceof Write) {
-                    $feed = $plugin->client()->feed("wall",  $id);
+                    $feed = $plugin->client()->feed("user",  $id);
                     $data = [
                         "actor"=>$id, // actor id
                         "verb"=>$edge->label(), // edge
@@ -36,9 +45,9 @@ class NodeListener
                     $feed->addActivity($data);
                 }
                 elseif($edge instanceof Subscribe) {
-                    $feed = $plugin->client()->feed("wall",  $id);
+                    $feed = $plugin->client()->feed("user",  $id);
                     $observer = $plugin->client()->feed("timeline",  $id);
-                    $observer->follow("wall", (string) $edge->head()->id());
+                    $observer->follow("user", (string) $edge->head()->id());
                     $data = [
                         "actor"=>$id, // actor id
                         "verb"=>$edge->label(), // edge
@@ -49,7 +58,7 @@ class NodeListener
                 }
             });
             $node->on("joined", function($group) use ($node, $id, $plugin) {
-                $feed = $plugin->client()->feed("wall",  $id);
+                $feed = $plugin->client()->feed("user",  $id);
                 $data = [
                     "actor"=>$id, // actor id
                     "verb"=>"join", // edge

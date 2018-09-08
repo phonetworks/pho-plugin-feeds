@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Pho package.
+ *
+ * (c) Emre Sokullu <emre@phonetworks.org>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Pho\Plugins;
 
 use Pho\Kernel\Kernel;
@@ -71,7 +80,7 @@ class FeedPlugin extends AbstractPlugin
 
     public function addActivity(): void
     {
-        $feed = $this->client()->feed("wall", (string) $node->id());
+        $feed = $this->client()->feed("user", (string) $node->id());
         $data = [
             "actor"=>(string) $node->id(), // actor id
             "verb"=>"_construct", // edge

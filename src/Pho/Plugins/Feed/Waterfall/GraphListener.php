@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the Pho package.
+ *
+ * (c) Emre Sokullu <emre@phonetworks.org>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Pho\Plugins\Feed\Waterfall;
 
 use Pho\Plugins\Feed\Waterfall\Exceptions\UnknownEntityException;
@@ -20,8 +29,8 @@ class GraphListener
         $plugin->graph()->on("particle.formed", function($node) use ($plugin) {
             if($node instanceof Actor) {
                 $observer = $plugin->client()->feed("timeline",  (string) $plugin->graph()->id());
-                $observer->follow("wall", (string) $node->id());
-                $feed = $plugin->client()->feed("wall", (string) $node->id());
+                $observer->follow("user", (string) $node->id());
+                $feed = $plugin->client()->feed("user", (string) $node->id());
                 $data = [
                     "actor"=>(string) $node->id(), // actor id
                     "verb"=>"_construct", // edge

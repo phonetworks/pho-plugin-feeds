@@ -18,12 +18,10 @@ class EdgeFeedGenerator {
         if(preg_match_all("/%([^%]+)%/", $feed, $matches)) {
             foreach($matches[1] as $i=>$match) {
                 if(strpos($match, ".")===false) {
-                    error_log("pedro mucho ".$match);
                     $func = sprintf("get%s", ucfirst($match));
                     $feed = \str_replace($matches[0][$i], $edge->$func(), $feed);
                     continue;
                 }
-                error_log("grazie ".$match);
                 $x = explode(".", $match, 2);
                 $func = sprintf("get%s", ucfirst($x[1]));
                 switch($x[0]) {
@@ -34,7 +32,6 @@ class EdgeFeedGenerator {
                         $feed = \str_replace($matches[0][$i], $edge->head()->$func(), $feed);
                         break;
                     default:
-                        error_log("what is this? ".$match);
                         break;
                 }
                 
